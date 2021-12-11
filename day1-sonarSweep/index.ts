@@ -27,3 +27,5 @@ input.forEach((value, i) => {
   } else {
   }
 });
+
+console.log(amountOfIncrements);
