@@ -1,5 +1,8 @@
 import fs from "fs";
 
+// Assignment
+// https://adventofcode.com/2021/day/2
+
 // GET THE DATA
 const input = fs.readFileSync("day2-dive/input.txt").toString().split("\n");
 
