@@ -1,5 +1,8 @@
 import fs from "fs";
 
+// Assignment
+// https://adventofcode.com/2021/day/1
+
 // GET THE DATA
 const input = fs
   .readFileSync("day1-sonarSweep/input.txt")
@@ -27,3 +30,5 @@ input.forEach((value, i) => {
   } else {
   }
 });
+
+console.log(amountOfIncrements);
