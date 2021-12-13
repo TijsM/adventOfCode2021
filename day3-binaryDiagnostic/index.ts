@@ -29,9 +29,9 @@ type Bit = "0" | "1";
 type Byte = Bit[];
 
 const getTranformedInput = () => {
-  const temp: Bit[][] = new Array(testInput[0].length).fill([]);
+  const temp: Bit[][] = new Array(input[0].length).fill([]);
 
-  testInput.forEach((value: string) => {
+  input.forEach((value: string) => {
     const byte: Byte = value.split("") as Byte;
 
     byte.forEach((bit, i) => {
@@ -69,9 +69,18 @@ const getEpsilon = (gamma: string) => {
   return epsilonArray.join("");
 };
 
+const getResult = (gamma: string, epsilon: string) => {
+  const numericGamma = parseInt(gamma, 2);
+  const numericEpsilon = parseInt(epsilon, 2);
+
+  return numericGamma * numericEpsilon;
+};
+
 const transformed = getTranformedInput();
 const gamma = getGamma(transformed);
 const epsilon = getEpsilon(gamma);
+const result = getResult(gamma, epsilon);
 
-console.log(gamma);
-console.log(epsilon);
+console.log("gamma -> ", gamma);
+console.log("epsilon -> ", epsilon);
+console.log("result -> ", result);
