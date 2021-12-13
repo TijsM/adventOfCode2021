@@ -57,9 +57,21 @@ const getGamma = (input: Bit[][]) => {
     return amount > minLength ? 1 : 0;
   });
 
-  return parseInt(gammaArray.join(""));
+  return gammaArray.join("");
+};
+
+const getEpsilon = (gamma: string) => {
+  const gammaArray = gamma.toString().split("");
+  const epsilonArray = gammaArray.map((val) => {
+    return val === "1" ? "0" : "1";
+  });
+
+  return epsilonArray.join("");
 };
 
 const transformed = getTranformedInput();
 const gamma = getGamma(transformed);
+const epsilon = getEpsilon(gamma);
+
 console.log(gamma);
+console.log(epsilon);
