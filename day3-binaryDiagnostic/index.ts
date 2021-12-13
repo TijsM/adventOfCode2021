@@ -23,4 +23,43 @@ const testInput = fs
   .toString()
   .split("\n");
 
-console.log(testInput);
+// TYPES
+
+type Bit = "0" | "1";
+type Byte = Bit[];
+
+const getTranformedInput = () => {
+  const temp: Bit[][] = new Array(testInput[0].length).fill([]);
+
+  testInput.forEach((value: string) => {
+    const byte: Byte = value.split("") as Byte;
+
+    byte.forEach((bit, i) => {
+      if (!temp[i].length) {
+        temp[i] = [bit];
+      } else {
+        temp[i].push(bit);
+      }
+    });
+  });
+
+  return temp;
+};
+
+const getGamma = (input: Bit[][]) => {
+  const amountOf1 = input.map((byte) => {
+    return byte.filter((b) => b === "1").length;
+  });
+
+  const minLength = input[0].length / 2;
+
+  const gammaArray = amountOf1.map((amount) => {
+    return amount > minLength ? 1 : 0;
+  });
+
+  return parseInt(gammaArray.join(""));
+};
+
+const transformed = getTranformedInput();
+const gamma = getGamma(transformed);
+console.log(gamma);
