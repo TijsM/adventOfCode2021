@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "day1": "ts-node day1-sonarSweep/index.ts",
     "day2": "ts-node day2-dive/index.ts",
-    "day3": "ts-node day3-binaryDiagnostic/index.ts"
+    "day3": "ts-node day3-binaryDiagnostic/index.ts",
+    "day4": "ts-node day4-giantSquid/index.ts"
   },
   "author": "",
   "license": "ISC",
