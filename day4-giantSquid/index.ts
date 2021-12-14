@@ -1,5 +1,5 @@
 import { Console } from "console";
-import fs from "fs";
+import fs, { cp } from "fs";
 
 // Assignment
 // https://adventofcode.com/2021/day/4
@@ -23,7 +23,8 @@ type Board = string[][];
 
 // CODE
 
-const orderOfNumbers: String[] = testInput[0].split(",");
+const orderOfNumbers: string[] = testInput[0].split(",");
+let calledIndex = 3;
 
 const getBoards = () => {
   const stringBoards: string[][] = [];
@@ -49,5 +50,49 @@ const getBoards = () => {
   return boards;
 };
 
+const validateBoards = (boards: Board[], numbers: string[]) => {
+  let winningBoard: Board | undefined = undefined;
+
+  while (!winningBoard) {
+    boards.forEach((board) => {
+      const boardWon = checkIfBoardWon(board, numbers.slice(0, calledIndex));
+      if (boardWon) {
+        winningBoard = boardWon;
+      }
+    });
+  }
+
+  console.log(winningBoard);
+};
+
+const checkIfBoardWon = (board: Board, numbers: string[]) => {
+  const rowDone = checkRow(board, numbers);
+  const columnDone = checkColumn(board, numbers);
+
+  if (rowDone || columnDone) {
+    return board;
+  } else {
+    calledIndex++;
+  }
+};
+
+const checkRow = (board: Board, numbers: string[]) => {
+  let isWon = false;
+
+  board.forEach((row) => {
+    const markedNumbers = row.filter((val) => {
+      return numbers.includes(val);
+    });
+
+    isWon = markedNumbers.length === row[0].length;
+  });
+
+  return isWon;
+};
+
+const checkColumn = (board: Board, numbers: string[]) => {
+  return false;
+};
+
 const boards = getBoards();
-console.log(boards);
+validateBoards(boards, orderOfNumbers);
